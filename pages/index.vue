@@ -47,6 +47,7 @@
          </nuxt-link>
        </div>
      </div>
+     <Chart/>
   </div>
 </template>
 
