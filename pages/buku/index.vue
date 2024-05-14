@@ -27,31 +27,32 @@
 </template>
 
 <script setup>
-const supabase = useSupabaseClient();
-const keyword = ref("");
-const books = ref([]);
+
+const supabase=useSupabaseClient()
+const keyword = ref('')
+const books = ref([])
+const jumlah = ref ([])
 
 const getBooks = async () => {
-    const { data, error } = await supabase
-       .from('buku')
-       .select('*, kategori(*)')
-       .ilike('judul', `%${keyword.value}%`);
-       if(data) books.value = data
-};
+    const { data, error } = await supabase.from('buku').select(`*, kategori(*)`)
+    .ilike('judul', `%${keyword.value}%`)
+    if(data) books.value = data
+}
 
 const totalBuku = async () => {
-    const { data, count} = await supabase
-       .from("buku")
-       .select("*", {count: "exact"});
-       if(data) jumlah.value = count;
-};
-
+    const { data, count} = await supabase.from ('buku')
+    .select("*", {count : 'exact'})
+    if (data) jumlah.value = count
+}
 
 onMounted(() => {
-    getBooks();
-});
-
+    getBooks()
+    totalBuku()
+})
 </script>
+
+
+
 
 <style scoped>
 .card-body {

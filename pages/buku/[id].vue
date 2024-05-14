@@ -20,6 +20,10 @@
             <li class="list-group-item">tahun terbit : {{ buku.tahun_terbit }}</li>
             <li class="list-group-item">penerbit : {{ buku.penerbit }}</li>
             <li class="list-group-item">deskripsi : {{ buku.deskripsi }}</li>
+            <li class="list-group-item">
+              <span v-if="buku.kategori">kategori : {{ buku.kategori.nama }}</span>
+              <span v-else>loading...</span>
+            </li>
           </ul>
         </div>
       </div>
